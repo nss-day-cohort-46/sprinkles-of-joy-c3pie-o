@@ -15,13 +15,40 @@ export const ProductList = () => {
       bakeryProducts = useProducts()
       bakeryCategories = useCategories()
       render()
+      
     })
 }
 
+// eventHub.addEventListener("change", changeEvent => {
+//   // Only do this if the `EaterySelect` element was changed
+//   if (changeEvent.target.id === "eateryButton") {
+//       const eateryThatWasChosen = changeEvent.target.value
+//       // Create custom event. Provide an appropriate name.
+//       const eateryCustomEvent = new CustomEvent("eateryChosen", {
+//           detail: {
+//               eateryThatWasChosen: parseInt(eateryThatWasChosen)
+//           }
+//       })
+
+//       // Dispatch to event hub
+//       eventHub.dispatchEvent(eateryCustomEvent)
+//   }
+// })
+
 const render = () => {
   contentTarget.innerHTML = bakeryProducts.map(product => {
-    const productCategory = bakeryCategories.find(category => cat.id === product.categoryId)
+    const productCategory = bakeryCategories.find(category => category.id === product.categoryId)
 
     return Product(product, productCategory)
   }).join("")
 }
+
+
+// const render = (productCollection) => {
+//   contentTarget.innerHTML = `
+//     <select class="dropdown" id="productSelect">
+//     <option value="0">Please select a product...</option>
+//     ${productCollection.map(productObject => 
+//         `<option value="${productObject.id}">${productObject.name}</option>`).join("")
+//     }
+// </select>
