@@ -3,7 +3,7 @@ import { bakeryAPI } from "../Settings.js"
 let categories = []
 
 export const useCategories = () => {
-  categories.slice()
+  return categories.slice()
 }
 
 export const getCategories = () => {
@@ -13,3 +13,4 @@ export const getCategories = () => {
       categories = categoriesArray
     })
 }
+///is the fetch correct?
