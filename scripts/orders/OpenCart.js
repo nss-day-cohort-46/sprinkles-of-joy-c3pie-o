@@ -9,7 +9,10 @@ const userCart = document.querySelector(".userCart")
 let productsInCart = []
 
 export const OpenCart = () => {
-  render()
+    getProducts()
+    .then(() => {
+      render(productsInCart)
+    })
 }
 
 const render = () => {
@@ -39,14 +42,17 @@ const render = () => {
   `
 }
 
-eventHub.addEventListener("showCustomerCart", e => OpenCart())
+eventHub.addEventListener("showCustomerCart", event => OpenCart())
 
 eventHub.addEventListener("addToCart", event => {
-  const productId = event.detail.productId
+  debugger
+  // if (event.target.id)
+  const productId = event.detail.addedProduct
   getProducts()
     .then(() => {
       const allProducts = useProducts()
       const productToBeAdded = allProducts.find(prod => prod.id === productId)
+      console.log(productToBeAdded)
       productsInCart.push(productToBeAdded)
       OpenCart()
     })
