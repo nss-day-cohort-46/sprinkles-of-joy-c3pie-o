@@ -44,11 +44,14 @@ eventHub.addEventListener("categorySelected", changeEvent => {
     const matchingProducts = productsArray.filter(productObj => {
       return productObj.categoryId === categoryChosen.id
     })
+    contentTarget.innerHTML = matchingProducts.map(productObj => Product(productObj, categoryChosen)).join("")}
+    else {
+      contentTarget.innerHTML = ProductList()
+    }
+  //   render(matchingProducts)
     
-    render(matchingProducts)
-    
-    console.log('matchingProducts: ', matchingProducts);
-  }
+  //   console.log('matchingProducts: ', matchingProducts);
+  // }
 })
 
 // const render = (productCollection) => {
