@@ -45,7 +45,7 @@ const render = () => {
 eventHub.addEventListener("showCustomerCart", event => OpenCart())
 
 eventHub.addEventListener("addToCart", event => {
-  debugger
+  // debugger
   // if (event.target.id)
   const productId = event.detail.addedProduct
   getProducts()
