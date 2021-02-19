@@ -18,7 +18,7 @@ export const Product = (product, category) => {
 }
 
 //why is this in brackets
-
+// debugger
 eventHub.addEventListener("click", event => {
     if (event.target.id.startsWith("addProduct--")) {
         // debugger
