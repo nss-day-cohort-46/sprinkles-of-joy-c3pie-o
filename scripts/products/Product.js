@@ -10,7 +10,7 @@ export const Product = (product, category) => {
                 <p>$${product.price}</p>
             </header>
             <div>
-                <button id="addProduct">Add to Cart</button>
+                <button id="addProduct--${product.id}">Add to Cart</button>
                 <p>${product.description} [${category.name}]</p>
             </div>
         </section>
@@ -19,9 +19,10 @@ export const Product = (product, category) => {
 
 //why is this in brackets
 
-eventHub.addEventListener("click", evt => {
-    if (evt.target.id.startsWith("addProduct--")) {
-        const [prefix, productId] = evt.target.id.split("--")
+eventHub.addEventListener("click", event => {
+    if (event.target.id.startsWith("addProduct--")) {
+        // debugger
+        const [prefix, productId] = event.target.id.split("--")
         const addProductEvent = new CustomEvent("addToCart", {
             detail: {
                 addedProduct: parseInt(productId)

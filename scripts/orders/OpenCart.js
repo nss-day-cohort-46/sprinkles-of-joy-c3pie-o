@@ -13,6 +13,7 @@ export const OpenCart = () => {
 }
 
 const render = () => {
+  // debugger
   let cartHTML = ""
   let totalCost = 0
 
@@ -39,14 +40,16 @@ const render = () => {
   `
 }
 
-eventHub.addEventListener("showCustomerCart", e => OpenCart())
+eventHub.addEventListener("showCustomerCart", event => OpenCart())
 
 eventHub.addEventListener("addToCart", event => {
+  // debugger
   const productId = event.detail.productId
   getProducts()
     .then(() => {
       const allProducts = useProducts()
       const productToBeAdded = allProducts.find(prod => prod.id === productId)
+      console.log(productToBeAdded)
       productsInCart.push(productToBeAdded)
       OpenCart()
     })
