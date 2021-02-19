@@ -32,7 +32,7 @@ const render = () => {
 
 
 eventHub.addEventListener("categorySelected", changeEvent => {
-  if (changeEvent.detail.selectedCategory === "0"){
+  if (changeEvent.detail.selectedCategory === 0){
     return contentTarget.innerHTML = ProductList()
     
   }
