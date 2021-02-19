@@ -9,7 +9,7 @@ export const getProducts = () => {
     .then(response => response.json())
     .then(bakedGoods => {
       products = bakedGoods
-      console.log(products)
+      // console.log(products)
 
     })
 }

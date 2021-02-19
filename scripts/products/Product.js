@@ -20,6 +20,7 @@ export const Product = (product, category) => {
 //why is this in brackets
 
 eventHub.addEventListener("click", evt => {
+    // debugger
     if (evt.target.id.startsWith("addProduct--")) {
         const [prefix, productId] = evt.target.id.split("--")
         const addProductEvent = new CustomEvent("addToCart", {

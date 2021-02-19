@@ -14,35 +14,42 @@ export const ProductList = () => {
     .then(() => {
       bakeryProducts = useProducts()
       bakeryCategories = useCategories()
-      render()
+      render(bakeryProducts, bakeryCategories)
       
     })
 }
 
-// eventHub.addEventListener("change", changeEvent => {
-//   // Only do this if the `EaterySelect` element was changed
-//   if (changeEvent.target.id === "eateryButton") {
-//       const eateryThatWasChosen = changeEvent.target.value
-//       // Create custom event. Provide an appropriate name.
-//       const eateryCustomEvent = new CustomEvent("eateryChosen", {
-//           detail: {
-//               eateryThatWasChosen: parseInt(eateryThatWasChosen)
-//           }
-//       })
-
-//       // Dispatch to event hub
-//       eventHub.dispatchEvent(eateryCustomEvent)
-//   }
-// })
 
 const render = () => {
-  contentTarget.innerHTML = bakeryProducts.map(product => {
+  contentTarget.innerHTML = bakeryProducts.map(
+    (product) => {
+      console.log('product: ', product);
     const productCategory = bakeryCategories.find(category => category.id === product.categoryId)
 
     return Product(product, productCategory)
   }).join("")
 }
 
+
+eventHub.addEventListener("categorySelected", changeEvent => {
+  if (changeEvent.detail.selectedCategory !== "0"){
+    const categoryArray = useCategories()
+    // console.log('categoryArray: ', categoryArray);
+    const categoryItem = changeEvent.detail.selectedCategory
+    
+    const categoryChosen = categoryArray.find(categoryObj => categoryObj.id === categoryItem)
+    
+    const productsArray = useProducts()
+
+    const matchingProducts = productsArray.filter(productObj => {
+      return productObj.categoryId === categoryChosen.id
+    })
+    
+    render(matchingProducts)
+    
+    console.log('matchingProducts: ', matchingProducts);
+  }
+})
 
 // const render = (productCollection) => {
 //   contentTarget.innerHTML = `
