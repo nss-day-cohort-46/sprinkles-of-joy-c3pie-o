@@ -23,7 +23,7 @@ export const ProductList = () => {
 const render = () => {
   contentTarget.innerHTML = bakeryProducts.map(
     (product) => {
-      console.log('product: ', product);
+      // console.log('product: ', product);
     const productCategory = bakeryCategories.find(category => category.id === product.categoryId)
 
     return Product(product, productCategory)
@@ -32,7 +32,11 @@ const render = () => {
 
 
 eventHub.addEventListener("categorySelected", changeEvent => {
-  if (changeEvent.detail.selectedCategory !== "0"){
+  if (changeEvent.detail.selectedCategory === "0"){
+    return contentTarget.innerHTML = ProductList()
+    
+  }
+  else { (changeEvent.detail.selectedCategory !== "0")
     const categoryArray = useCategories()
     // console.log('categoryArray: ', categoryArray);
     const categoryItem = changeEvent.detail.selectedCategory
@@ -41,18 +45,16 @@ eventHub.addEventListener("categorySelected", changeEvent => {
     
     const productsArray = useProducts()
 
-    const matchingProducts = productsArray.filter(productObj => {
-      return productObj.categoryId === categoryChosen.id
-    })
-    contentTarget.innerHTML = matchingProducts.map(productObj => Product(productObj, categoryChosen)).join("")}
-    else {
-      contentTarget.innerHTML = ProductList()
-    }
+    const matchingProducts = productsArray.filter(productObj => productObj.categoryId === categoryChosen.id)
+
+    contentTarget.innerHTML = matchingProducts.map(productObj => Product(productObj, categoryChosen)).join("")
+  }
+  }
   //   render(matchingProducts)
     
   //   console.log('matchingProducts: ', matchingProducts);
   // }
-})
+)
 
 // const render = (productCollection) => {
 //   contentTarget.innerHTML = `
