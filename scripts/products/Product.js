@@ -13,6 +13,7 @@ export const Product = (product, category) => {
                 <button id="addProduct--${product.id}">Add to Cart</button>
                 <p>${product.description} [${category.name}]</p>
             </div>
+            
         </section>
 `
 }
