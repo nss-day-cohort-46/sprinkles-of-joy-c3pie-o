@@ -16,7 +16,6 @@ export const OpenCart = () => {
 }
 
 const render = () => {
-  // debugger
   let cartHTML = ""
   let totalCost = 0
 
