@@ -19,7 +19,7 @@ const render = (categoriesArray) => {
   // debugger
   contentTarget.innerHTML = `
       <select class="dropdown" id="categorySelect">
-      <p>cats</P>
+      <p>cats</p>
       <option value="0">All baked goods...</option>
       ${categoriesArray.map(category => `<option value="${category.id}">${category.name}</option>`).join("")}
       </select>
@@ -27,10 +27,11 @@ const render = (categoriesArray) => {
     }
 
 eventHub.addEventListener("change", changeEvent => {
+  // debugger
   if (changeEvent.target.id === "categorySelect") {
     const categoryCustomEvent = new CustomEvent("categorySelected", {
       detail: {
-        selectedCategory: changeEvent.target.value
+        selectedCategory: parseInt(changeEvent.target.value)
       }
     })
     eventHub.dispatchEvent(categoryCustomEvent)
