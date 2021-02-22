@@ -1,5 +1,5 @@
 import { authHelper } from "../auth/authHelper.js"
-import { customerLogin } from "./CustomerProvider.js"
+import { customerLogin, getCustomer } from "./CustomerProvider.js"
 
 const eventHub = document.querySelector("#container")
 const contentTarget = document.querySelector(".form__register")
@@ -43,6 +43,44 @@ const render = () => {
 }
 
 eventHub.addEventListener("showRegisterForm", RegisterForm)
+
+const saveCustomer = customer => {
+  let stringifyObj = JSON.stringify(customer)
+  // debugger
+  return fetch('http://localhost:8088/customers', {
+      method: "POST",
+      headers: {
+          "Content-Type": "application/json"
+      },
+      body: stringifyObj
+  })
+}
+
+eventHub.addEventListener("click", clickEvent => {
+  if (clickEvent.target.id === "customerRegister") {
+      const firstName = document.getElementById("register-firstName").value
+      const lastName = document.getElementById("register-lastName").value
+      const email = document.getElementById("register-email").value
+      const password = document.getElementById("register-password").value
+      const rewards = document.getElementById("register-rewards").value
+
+
+      // Make a new object representation of a note
+      const newCustomer = {
+          // Key/value pairs here
+          name: `${firstName} ${lastName}`,
+          email: email,
+          rewardsMember: (rewards === "on"),
+          password: password,
+      }
+
+      // Change API state and application state
+      
+      saveCustomer(newCustomer)
+      
+      
+  }
+})
 
 eventHub.addEventListener("click", evt => {
   if (evt.target.id === "link__login") {
