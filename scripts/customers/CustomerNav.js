@@ -1,5 +1,6 @@
 import { authHelper } from "../auth/authHelper.js"
 import { getCustomer } from "../customers/CustomerProvider.js"
+import { LoginForm } from "./LoginForm.js"
 
 const eventHub = document.querySelector("#container")
 const userNav = document.querySelector(".userNav")
@@ -20,6 +21,7 @@ const render = (customer) => {
     <li class="userNav__link" id="userNav--showCart">My Cart</li>
     <li class="userNav__link" id="userNav--newReview">New Review</li>
     <li class="userNav__link" id="userNav--pastOrders">Order History</li>
+    <li class="userNav__link" id="userNav--logOut">Log Out</li>
     </ul>
   `
 }
@@ -41,8 +43,16 @@ eventHub.addEventListener("click", event => {
         break;
       case "pastOrders":
         customEvent = new CustomEvent("showPastOrders")
+      case "logOut":
+        customEvent = new CustomEvent("logOut")
         break;
     }
     eventHub.dispatchEvent(customEvent)
   }
+})
+
+eventHub.addEventListener("logOut", event => {
+  sessionStorage.clear()
+  userNav.innerHTML = ""
+  LoginForm()
 })
