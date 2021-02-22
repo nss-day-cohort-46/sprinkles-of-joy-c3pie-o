@@ -13,4 +13,3 @@ export const getCategories = () => {
       categories = categoriesArray
     })
 }
-///is the fetch correct?
