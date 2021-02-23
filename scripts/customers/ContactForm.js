@@ -25,13 +25,35 @@ export const ContactForm = () => {
         <label for="message">Message: </label>
         <input type="text" id="message" name="message">
         </fieldset>
-        
-        <button id="submit">Submit</button>
         </form>
+        <button id="modal--close">Submit</button>
+        
     </div>
     </div>
     `
     contentTarget.innerHTML = HTMLRep
     }
+    
 
-    eventHub.addEventListener("showContactForm", ContactForm)
+    eventHub.addEventListener("click", e => {
+    // debugger
+        if (e.target.id === "contact") {
+            
+            const customEvent = new CustomEvent("showContactForm")
+            eventHub.dispatchEvent(customEvent)
+        }
+    })
+
+    eventHub.addEventListener("showContactForm", () => {
+        ContactForm()
+    })
+
+    eventHub.addEventListener("click", event => {
+        if (event.target.id === "modal--close") {
+          closeModal()
+        }
+      })
+const contentContainer =  document.querySelector(".modal")
+      const closeModal = () => {
+        contentContainer.innerHTML = ""
+      }

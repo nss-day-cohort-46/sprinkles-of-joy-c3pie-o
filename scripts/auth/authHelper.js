@@ -14,4 +14,5 @@ export const authHelper = {
   },
   getCurrentUserId: () => sessionStorage.getItem("soj-customer-id"),
   storeUserInSessionStorage: (userId) => sessionStorage.setItem("soj-customer-id", userId)
+  // removeUserInStorage: () => sessionStorage.removeItem("soj-customer-id")
 }
