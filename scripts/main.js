@@ -7,8 +7,10 @@ import { CustomerNav } from "./customers/CustomerNav.js"
 import { CategorySelect } from "./categories/CategorySelect.js"
 import { LoginForm } from "./customers/LoginForm.js"
 import { ProductList } from "./products/ProductList.js"
+import "./customers/ContactForm.js"
 
 LoginForm()
 CustomerNav()
 CategorySelect()
 ProductList()
+// ContactForm()
