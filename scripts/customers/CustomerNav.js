@@ -43,6 +43,7 @@ eventHub.addEventListener("click", event => {
         break;
       case "pastOrders":
         customEvent = new CustomEvent("showPastOrders")
+        break;
       case "logOut":
         customEvent = new CustomEvent("logOut")
         break;
